@@ -1,0 +1,160 @@
+<ion-header>
+    <ion-navbar color="light">
+          <button ion-button menuToggle icon-only>
+            <ion-icon name="menu" style="padding-top: 10px;" color="modena"></ion-icon>
+          </button>
+          <ion-buttons end>
+              <img src="../../assets/images/logo-home.jpg" width="121" style="padding-top: 10px"/>
+          </ion-buttons>
+      </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <div style="padding: 16px">
+      <div class="row">
+        <img full src="../../assets/images/register-banner.jpg" style="height: 100%;width: 100%;" />
+        <h1 center class="banner-title">{{judul}}</h1>
+        <hr>
+      </div>
+      <div class="wrapper">	
+        <div class="profile">	
+            <ion-grid>
+                <ion-row>
+                  <ion-col col-4>
+                    <h2 style="font-size: 14px;margin-bottom: 0;">WELCOME,</h2>
+                    <p style="font-weight: 500;font-size: 11px;margin-top: 0;">{{ profile.name }}</p>
+                  </ion-col>
+                  <ion-col col-8>
+                      <p style="margin:0;font-size: 12px;" class="line-clamp-address">{{ profile.address }}</p>
+                      <p class="line-clamp" style="margin:0;font-size: 12px;">Mobile : {{ profile.handphone }}</p>
+                      <p class="line-clamp-2" style="margin:0;font-size: 12px;">Email : {{ profile.email }}</p>
+                      <button ion-button item-end icon-start color="modena" (tap)="goprofile()" style="height: 16px;font-size: 9px;color:black">
+                        Update Profile
+                      </button>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+      </div>
+      <h1 center class="banner-title-2" >{{label_konfirmasi_registrasi_kontrak_servis}}</h1>
+      <hr class="hr-title">
+      <div *ngFor="let mk of arr_item; let j=index">
+        <h1 class="item-produk" style="margin-bottom: 0" >{{ mk.nama_produk }}</h1>
+        <h1 class="item-produk" style="margin-bottom: 0;margin-top: 0">No. Seri: {{ mk.serialnumber }}</h1>
+        <div *ngIf="!ubah" class="item-produk" style="padding-bottom: 10px;font-weight: 200;font-size: 12px;margin-top: 2px;">{{label_lokasi_produk}} : <br>- sesuai dengan alamat profil</div>
+      </div>
+      
+      <ion-list *ngIf="ubah">
+        <ion-item>
+          <ion-label stacked>{{label_lokasi_produk}}</ion-label>
+          <ion-textarea [(ngModel)]="alamat_current" rows="4" cols="20"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_propinsi}}</ion-label>
+          <ion-select [(ngModel)]="provinsi" interface="action-sheet" (ionChange)="onChangePropinsi(provinsi)">
+              <div *ngFor="let p of arr_provinsi">
+                  <ion-option value="{{ p.propinsi_id }}">{{ p.propinsi }}</ion-option>	
+              </div>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_kota}}</ion-label>
+          <ion-select [(ngModel)]="kota" interface="action-sheet">
+              <div *ngFor="let p of arr_kota">
+                  <ion-option value="{{ p.kota_id }}">{{ p.kota }}</ion-option>	
+              </div>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_kode_pos}}</ion-label>
+          <ion-input type="number" [(ngModel)]="kode_pos" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_telepon}}</ion-label>
+          <ion-input type="number" [(ngModel)]="telepon" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_telepon_selular}}</ion-label>
+          <ion-input type="number" [(ngModel)]="hp" ></ion-input>
+        </ion-item>
+      </ion-list>
+      <button ion-button icon-start block (tap)="ubah_lokasi()" color="modena" style="font-size: 12px;height:25px;margin-bottom: 10px;width: 88%;margin-left: 15px" >
+          {{btn_ubah_lokasi}}
+      </button>
+      <hr class="hr-title">
+      <div padding>
+        <ion-textarea [(ngModel)]="keterangan" rows="4" cols="20" placeholder="{{label_catatan}}..."></ion-textarea>
+        <p style="font-size: 12px;text-align: justify;" [innerHTML]="label_produk_penunjang_yang_mungkin_anda | safeHtml"></p>
+        <ion-slides  class="slide-css" loop="true"  pager="false" slidesPerView="3">
+            <ion-slide *ngFor="let mk of arr_produk_penunjang; let j=index">
+              <ion-card >
+                  <ion-card-content no-padding >
+                        <img src="http://www.modena.co.id/images/product/{{mk.nama_produk_asli}}.png" class="penawaran" (tap)="detail_produk_penunjang(mk.nama_produk_asli,j)" />
+                        <div style="color: #e69918;font-size: 10px;" (tap)="detail_produk_penunjang(mk.nama_produk_asli,j)">{{mk.nama_produk}}</div>
+                      <input [(ngModel)]="values[j]" type="hidden" value="{{mk.harga}}" />
+                      <button ion-button outline color="modena" (click)="hilangkan_seleksi(mk,j)" [ngClass]="{'hidden' : values[j] != 0}" style="position: absolute;top: 25%;right: 30%;">
+                        <ion-icon name="trash" ></ion-icon>
+                      </button>
+                      <!-- <ion-input class="ion-button outline" type="button" style="position: absolute;top: 18px;right: 16px;" [(ngModel)]="values[j]"><ion-icon name="trash" ></ion-icon></ion-input> -->
+                  </ion-card-content>
+              </ion-card>
+            </ion-slide>
+        </ion-slides> 
+        <table cellspacing="0" cellpadding="0" width="100%" id="tabel_biaya_kontrak_servis" style="font-weight: 900;font-size: 12px;margin-top:25px">
+          <tr>
+            <td colspan="2" style="padding:0px !important" id="label_biaya_kontrak_servis_rp">{{label_biaya_kontrak_servis_rp}}</td>
+          </tr>
+          <tr>
+            <td>{{label_biaya_kontrak_servis}}</td>
+            <td style="text-align:right">{{biaya_kontrak_servis | number }}</td>
+          </tr>
+          <tr id="kontainer_biaya_produk_penunjang" *ngIf="arr_detail_item_seleksi.length>0">
+            <td colspan="2"  style="padding-top: 10px;">{{label_pembelian_produk_penunjang_rp}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" >
+              <table *ngFor="let mk of arr_detail_item_seleksi; let j=index" width="100%" style="padding:7px 0px 7px 0px; border-top:none solid #CCC; border-bottom:1px solid #CCC">
+                  <tr>
+                    <td colspan="2" style="font-weight:100;padding-top: 10px;"><strong>{{mk.counter}}#</strong> {{mk.nama_produk}}</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:100;padding-bottom: 10px;">Rp{{mk.harga_produk | number}} x 
+                      <input type="number" [(ngModel)]="values_qty[j]" style="width:50px" (change)="hitunglagi(j)" /> unit</td>
+                    <td style="text-align:right; font-weight:100" id="subtotal_produk_#nama_produk#">{{mk.subtotal_produk | number}}</td>
+                  </tr>
+                </table>
+            </td>
+          </tr>
+          <tr>
+            <td id="label_total_produk_penunjang_rp" style="padding-top: 10px;padding-bottom: 10px">{{label_total_produk_penunjang_rp}}</td>
+            <td id="biaya_produk_penunjang" style="text-align:right">{{biaya_produk_penunjang |number}}</td>
+          </tr>
+          <tr>
+            <td style="border-top:#FAA61A 1px solid; padding-top:11px; margin-top:11px"><span id="label_total_biaya_rp">{{label_total_biaya_rp}}</span> 
+              <sup style="color:red; font-weight:900">*</sup> :</td>
+            <td style="border-top:#FAA61A 1px solid; padding-top:11px; margin-top:11px; text-align:right">{{total_biaya_kontrak_servis | number}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="font-weight:100;padding-top: 10px"><sup style="color:red; font-weight:900">*</sup>. 
+              <span id="label_total_tagihan_yang_harus_dibayarkan">{{label_total_tagihan_yang_harus_dibayarkan}}</span></td>
+          </tr>
+        </table>
+        <div style="width:100%; border:solid 1px #CCC; background-color:#f6f4f2; border-radius:5px; padding:10px; margin-top:10px;font-size: 11px;">
+          <span id="label_dengan_mengirimkan_registrasi_kontrak_servis_berikut">{{label_dengan_mengirimkan_registrasi_kontrak_servis_berikut}}</span> <br />
+          <button ion-button icon-start block (tap)="syaratketentuan()" color="dark" style="font-size: 9px;height: 20px;" >
+            {{input_b_syarat_ketentuan_kontrak_servis}}
+          </button>
+        </div>
+      </div>
+      <button ion-button icon-start block (tap)="validator()" color="modena" style="font-size: 12px;" >
+        {{input_b_kirim_kontrak_servis}}
+      </button>
+      <ion-input  type="hidden" [(ngModel)]="minat_produk_penunjang" ></ion-input>
+      <ion-input  type="hidden" [(ngModel)]="minat_produk_penunjang_clear" ></ion-input>
+      <page-followus></page-followus>
+    </div>
+    <div style="padding: 10px;background-color: #faa61a"></div>
+  </ion-content>
+  
+  
+  

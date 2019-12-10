@@ -1,17 +1,33 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar color="light">
+          <button ion-button menuToggle icon-only>
+            <ion-icon name="menu" style="padding-top: 10px;" color="modena"></ion-icon>
+          </button>
+          <ion-buttons end>
+              <img src="../../assets/images/logo-home.jpg" width="121" style="padding-top: 10px"/>
+          </ion-buttons>
+      </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+    <!-- <button ion-button block color="danger" (click)="logout()" *ngIf="userProfile">
+      <ion-icon name="logo-googleplus"></ion-icon>
+      Logout with Google
+    </button> --> 
+    <h3 *ngIf="userProfile" style="font-size: 12px;text-align: center;padding: 10px;margin-bottom: 0;font-weight: 300;">{{label_welcome}}</h3>
+    <h2 *ngIf="userProfile" style="font-size: 20px;text-align: center;margin: 0;line-height: 0.4;">{{userProfile}}</h2>
+    <div style="padding: 16px">
+      <div class="row" style="margin-top: 10px">
+        <img (tap)="register()" full src="../../assets/images/registrasi.jpg" style="margin-bottom: 5px;height: 100%; width: 100%;" />
+        <img (tap)="experience()" full src="../../assets/images/experience.jpg" style="margin-bottom: 5px;height: 100%;width: 100%;" />
+        <img (tap)="promo()" full src="../../assets/images/latest-news.jpg" style="margin-bottom: 5px;height: 100%;width: 100%;" />
+        <img (tap)="onlineshop()" full src="../../assets/images/online-shopping.jpg" style="margin-bottom: 5px;height: 100%;width: 100%;" />
+        <!-- <img (tap)="download()" full src="../../assets/images/download.jpg" style="margin-bottom: 5px;height: 100%;width: 100%;" /> -->
+      </div>
+     
+      <page-followus></page-followus>
+    </div>
+    <div style="padding: 10px;background-color: #faa61a"></div>
 </ion-content>
+
+

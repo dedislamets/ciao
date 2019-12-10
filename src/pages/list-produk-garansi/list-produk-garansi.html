@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color="modena">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>{{daftar_produk}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+  <ion-list inset>
+      <div style="margin:10px">
+          <button ion-button round outline block (click)="create()" color="modena">
+                  <ion-icon name="create" item-start style="padding-right:10px"></ion-icon>
+                  {{judul}}
+          </button>
+      </div>
+      <div *ngFor="let itm of arrList; let j=index">
+        <button ion-item (click)="itemSelected(itm)" style="border-bottom: none;background-color: #f5f5f5;margin-bottom: 10px;">
+          <h2 style="font-weight: 500">{{ itm.product }}</h2>
+          <h3>{{ template_nomor_seri }} : {{ itm.serialnumber }}</h3>
+          <p style="color: darkgoldenrod;">{{ template_pembelian_dari }} : {{ itm.purchaseat }}</p>
+          <p style="color: darkgoldenrod;">{{ itm.tanggal }}</p>
+          
+          <button ion-button clear item-end icon-start color="modena">
+              <ion-icon name="arrow-dropright" style="font-size: 32px;padding-right: 0;"></ion-icon>
+          </button>
+          <div *ngIf="values_produk_note[j] !=''" class="noted">{{ values_produk_note[j] }}</div>
+        </button>
+      </div>
+  </ion-list>
+</ion-content>

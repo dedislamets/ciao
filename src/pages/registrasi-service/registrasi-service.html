@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-navbar color="light">
+        <button ion-button menuToggle icon-only>
+          <ion-icon name="menu" style="padding-top: 10px;" color="modena"></ion-icon>
+        </button>
+        <ion-buttons end>
+            <img src="../../assets/images/logo-home.jpg" width="121" style="padding-top: 10px"/>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding: 16px">
+    <div class="row">
+      <img full src="../../assets/images/register-banner.jpg" style="height: 100%;width: 100%;" />
+      <h1 center class="banner-title">{{judul}}</h1>
+      <hr>
+    </div>
+    <div class="wrapper">	
+      <div class="profile">	
+          <ion-grid>
+              <ion-row>
+                <ion-col col-4>
+                  <h2 style="font-size: 14px;margin-bottom: 0;">WELCOME,</h2>
+                  <p style="font-weight: 500;font-size: 11px;margin-top: 0;">{{ profile.name }}</p>
+                </ion-col>
+                <ion-col col-8>
+                    <p style="margin:0;font-size: 12px;" class="line-clamp-address">{{ profile.address }}</p>
+                    <p class="line-clamp" style="margin:0;font-size: 12px;">Mobile : {{ profile.handphone }}</p>
+                    <p class="line-clamp-2" style="margin:0;font-size: 12px;">Email : {{ profile.email }}</p>
+                    <button ion-button item-end icon-start color="modena" (tap)="goprofile()" style="height: 16px;font-size: 9px;color:black">
+                      Update Profile
+                    </button>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+      </div>
+    </div>
+    <h1 center class="banner-title-2" >{{label_konfirmasi_registrasi_kontrak_servis}}</h1>
+    <hr class="hr-title">
+    <div *ngFor="let mk of arr_item; let j=index">
+      <h1 class="item-produk" style="margin-bottom: 0" >{{ mk.nama_produk }}</h1>
+      <h1 class="item-produk" style="margin-bottom: 0;margin-top: 0">No. Seri: {{ mk.serialnumber }}</h1>
+      <div *ngIf="!ubah" class="item-produk" style="padding-bottom: 10px;font-weight: 200;font-size: 12px;margin-top: 2px;">{{label_lokasi_produk}} : <br>- sesuai dengan alamat profil</div>
+    </div>
+    
+    <ion-list *ngIf="ubah">
+      <ion-item>
+        <ion-label stacked>{{label_lokasi_produk}}</ion-label>
+        <ion-textarea [(ngModel)]="alamat_current" rows="4" cols="20"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{label_propinsi}}</ion-label>
+        <ion-select [(ngModel)]="provinsi" interface="action-sheet" (ionChange)="onChangePropinsi(provinsi)">
+            <div *ngFor="let p of arr_provinsi">
+                <ion-option value="{{ p.propinsi_id }}">{{ p.propinsi }}</ion-option>	
+            </div>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{label_kota}}</ion-label>
+        <ion-select [(ngModel)]="kota" interface="action-sheet">
+            <div *ngFor="let p of arr_kota">
+                <ion-option value="{{ p.kota_id }}">{{ p.kota }}</ion-option>	
+            </div>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{label_kode_pos}}</ion-label>
+        <ion-input type="number" [(ngModel)]="kode_pos" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{label_telepon}}</ion-label>
+        <ion-input type="number" [(ngModel)]="telepon" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{label_telepon_selular}}</ion-label>
+        <ion-input type="number" [(ngModel)]="hp" ></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button icon-start block (tap)="ubah_lokasi()" color="modena" style="font-size: 12px;height:25px;margin-bottom: 10px;width: 88%;margin-left: 15px" >
+        {{btn_ubah_lokasi}}
+    </button>
+    <hr class="hr-title">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>{{label_tanggal_pembelian}}</ion-label>
+        <ion-datetime [(ngModel)]="tgl_diinginkan" displayFormat="YYYY-MM-DD"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{label_keluhan_permasalahan_teknis_produk}}</ion-label>
+        <ion-textarea [(ngModel)]="keluhan" rows="4" cols="20" placeholder=""></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{label_catatan}}</ion-label>
+        <ion-textarea [(ngModel)]="keterangan" rows="4" cols="20" placeholder=""></ion-textarea>
+      </ion-item>
+    </ion-list>
+    
+    <button ion-button icon-start block (tap)="validator()" color="modena" style="font-size: 12px;" >
+      {{input_b_kirim_permintaan_servis}}
+    </button> 
+
+    <page-followus></page-followus>
+  </div>
+  <div style="padding: 10px;background-color: #faa61a"></div>
+</ion-content>
+
+

@@ -1,0 +1,57 @@
+<layout-login>
+  <div class="content" content>
+    <figure>
+      <img src="./assets/images/login-logo.png" alt="Logo" >
+    </figure>
+
+    <div class="socials-buttons" style="margin-bottom: 20px">
+      <button ion-button icon-left round full color="modena" style="padding: 5px;height: 25px;" (click)="login()">
+        <small style="font-size: 9px">{{label_have_account}}</small>
+      </button>
+      <span class="separator-text">|</span>
+      <button ion-button icon-left full round color="modena" style="padding: 5px;height: 25px;" (click)="register()">
+        <small style="font-size: 9px;">{{label_register_new}}</small>
+      </button>
+    </div>
+
+    <form class="register-form" #form="ngForm">
+      <ion-item>
+        <ion-label>
+          <ion-icon name="ios-person" style="color: #414042;font-size: 1.6em;"></ion-icon>
+        </ion-label>
+        <ion-input style="font-size: 12px" type="text" [(ngModel)]="input.username" name="username" placeholder="{{label_username}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label >
+          <ion-icon name="ios-mail"  style="color: #414042;font-size: 1.6em;"></ion-icon>
+        </ion-label>
+        <ion-input style="font-size: 12px" type="email" [(ngModel)]="input.email" name="email" placeholder="{{label_email}}"  pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
+        <!-- <ion-item *ngIf="frm.email.errors.email">
+            <p style="color:red">Email must be a valid email address!</p>
+        </ion-item> -->
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+            <ion-icon name="ios-lock"  style="color: #414042;font-size: 1.6em;"></ion-icon>
+        </ion-label>
+        <ion-input style="font-size: 12px" type="password" [(ngModel)]="input.password" name="password" placeholder="Password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+            <ion-icon name="ios-lock"  style="color: #414042;font-size: 1.6em;"></ion-icon>
+        </ion-label>
+        <ion-input style="font-size: 12px" type="password" [(ngModel)]="input.confirm" name="confirm" placeholder="{{label_confirm}}"></ion-input>
+      </ion-item>
+      <button ion-button full round class="dark-blue" style="margin-top: 40px" (click)="registrasi()" >{{label_register}}</button>
+    </form>
+
+    <div class="footer" full>
+      Copyright 2019 Modena Indonesia | Version 3.0.1
+    </div>
+  </div>
+  
+</layout-login>
+

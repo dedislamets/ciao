@@ -1,0 +1,16 @@
+<ion-header>
+
+    <ion-navbar color="modena">
+      <ion-title></ion-title>
+    </ion-navbar>
+  
+</ion-header>
+
+<ion-content>
+  <h1 style="padding-left: 15px;font-size: 16px;border-bottom: solid 1px gray;padding-bottom: 10px;">{{label_daftar_registrasi_produk_dengan_cashback}}</h1>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+      {{ item }}
+    </button>
+  </ion-list>
+</ion-content>

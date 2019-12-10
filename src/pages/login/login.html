@@ -1,0 +1,83 @@
+<layout-login>
+  <div class="content" content>
+    <figure>
+      <img src="./assets/images/login-logo.png" alt="Logo" >
+    </figure>
+
+    <div class="socials-buttons" style="margin-bottom: 20px">
+      <button ion-button icon-left round full color="modena" style="padding: 5px;height: 25px;">
+        <small style="font-size: 9px">{{label_have_account}}</small>
+      </button>
+      <span class="separator-text">|</span>
+      <button ion-button icon-left full round color="modena" style="padding: 5px;height: 25px;" (click)="register()">
+        <small style="font-size: 9px;">{{label_register_new}}</small>
+      </button>
+    </div>
+
+    <form #form="ngForm" class="login-form" novalidate>
+      <ion-item>
+        <ion-label color="dark-yellow">
+          <ion-icon name="mail" style="color:#414042"></ion-icon>
+        </ion-label>
+        <ion-input type="text" style="font-size: 12px" required [(ngModel)]="input.email" name="email" placeholder="{{label_email}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark-yellow">
+            <ion-icon name="lock" style="color:#414042"></ion-icon>
+        </ion-label>
+        <ion-input type="password" style="font-size: 12px" placeholder="Password" required [(ngModel)]="input.password" name="password"></ion-input>
+      </ion-item>
+      <button ion-button full round class="dark-blue" (click)="loginapp()" style="margin-top: 40px">{{judul}}</button>
+    </form>
+    <!-- <form (ngSubmit)="login()" [formGroup]="loginForm">
+      <ion-list inset>
+  
+        <ion-item [ngClass]="{ invalid: emailErrors.hasError('*', ['touched', 'dirty']) }">
+          <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+  
+        <div ngxErrors="email" #emailErrors="ngxErrors">
+          <div [ngxError]="['email', 'required']" [when]="['touched', 'dirty']">It should be a valid email</div>
+        </div>
+  
+        <ion-item [ngClass]="{ invalid: passwordErrors.hasError('*', ['touched']) }">
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+  
+        <div ngxErrors="password" #passwordErrors="ngxErrors">
+          <div [ngxError]="['minlength', 'required']" [when]="['touched']">It should be at least 5 characters</div>
+        </div>
+      </ion-list>
+      <div class="form-error">{{loginError}}</div>
+
+      <button ion-button full type="submit" [disabled]="!loginForm.valid">Log in</button>
+    </form> -->
+
+    <p style="margin-bottom: 35px" (tap)="lupa_password()">{{label_lupa_password}}? {{label_click_here}}</p>
+    <div style="margin: 20px 0;">
+      <div class="line" ></div>
+      <div style="display:inline-block;font-size: 8px;font-weight: 500;">{{masuk_dengan}}</div>
+      <div class="line" ></div>
+    </div>
+    
+    <div class="socials-buttons" style="margin-left: 21px">
+      <button ion-button icon-left clear (click)="facebook()">
+        <img src="./assets/images/facebook-icon.png" alt="Logo" width="30px" height="30px" style="margin-right: 5px" >
+        <!-- <ion-icon name="logo-facebook" style="padding: 5px;border-radius: 50%;background-color: blue;color: #fff;margin-right: 6px;"></ion-icon> -->
+        <small style="color: #414042">Facebook</small>
+      </button>
+      <button ion-button icon-left clear color="danger" (click)="google()">
+        <img src="./assets/images/google-icon.png" alt="Logo" width="30px" height="30px"  style="margin-right: 5px" >
+        <!-- <ion-icon name="logo-googleplus" style="padding: 5px;border-radius: 50%;background-color: red;color: #fff;margin-right: 6px;"></ion-icon> -->
+        <small style="color: #414042">Google</small>
+      </button>
+    </div>
+
+    <div class="footer" full>
+      Copyright 2019 Modena Indonesia | Version 3.0.1
+    </div>
+  </div>
+  
+</layout-login>
+

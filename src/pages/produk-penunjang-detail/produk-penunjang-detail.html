@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="modena">
+      <ion-title>
+          
+      </ion-title>
+      <ion-buttons start>
+        <button color="modena" ion-button (click)="dismiss()">
+          <span ion-text color="primary">Cancel</span>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div style="width:100%; margin:7px auto; background-color:#FFF">
+    <div style="width:100%; padding-bottom:7px" >
+      <div style="width:100%; margin:0 auto"><img [src]="img_produk_penunjang" style="width:100%; border:solid 1px #CCC; border-radius:3px" /></div>
+      <h3 style="margin-bottom: 0;">{{nama_produk_penunjang}}</h3>
+      <h4 style="margin-top: 0;font-size: 16px;">Rp {{harga_produk_penunjang | number}}</h4>
+      <hr>
+      <div *ngFor="let mk of arr_item | keys">
+          <div style='margin:5px 0px 5px 0px'>
+            <strong>{{mk | uppercase}}</strong><br />
+            <div *ngFor="let mi of arr_item[mk]">
+              <div [innerHTML]="mi.value_id  | safeHtml"></div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <button ion-button item-end block color="modena" (tap)="minat()" class="btn-more-submit">
+        Saya Berminat
+    </button>
+  </div>
+</ion-content>

@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-navbar color="light">
+        <button ion-button menuToggle icon-only>
+          <ion-icon name="menu" style="padding-top: 10px;" color="modena"></ion-icon>
+        </button>
+        <ion-buttons end>
+            <img src="../../assets/images/logo-home.jpg" width="121" style="padding-top: 10px"/>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div style="background-color: #f6f4f2" padding>
+    <h3>{{ produk }} {{nama_produk}}</h3>
+    <div style="margin:0 auto; width:100%; text-align:center">
+      <img [src]="img_produk" /></div>
+    <div style="padding:3px 0px 3px 0px">
+      Nomor seri : {{nomorseri}}<br />
+      Pembelian dari {{purchaseat}}<br />
+      {{tanggal_pembelian}}
+      <h3 style="font-size: 15px" [ngStyle]="{'color': valid == '1' ? 'green' : 'red'}">{{text_status_garansi}}</h3>
+    </div>
+    <button ion-button icon-start block (tap)="download()" color="modena" style="font-size: 12px" >
+        {{input_b_download}}
+    </button>
+    <button *ngIf="kontrak_servis_registrasi!=1" ion-button icon-start block (tap)="kontrakServis()" color="modena" style="font-size: 12px" >
+        {{ input_b_kontrak_servis }}
+    </button>
+    <button ion-button icon-start block (tap)="permintaanservis()" color="modena" style="font-size: 12px" >
+        {{ input_b_permintaan_servis }}
+    </button>
+  </div>
+  <div style="width:100%; margin:0px auto; background-color:#EEE;" *ngIf="spot_light_ada">
+    <div id="kontainer_youtube">
+      <div style="padding-top: 10px;">
+        <strong style="font-size:14px; padding-bottom:17px;padding-left: 10px;">Spot Light</strong>
+        <ion-slides  class="slide-css" loop="true"  pager="false" slidesPerView="2">
+            <ion-slide *ngFor="let vid of listVideo">
+              <ion-card  (click)="muat_video(vid.contentDetails.videoId)">
+                  <ion-card-content no-padding>
+                      <img (click)='muat_video(vid.contentDetails.videoId)'  src='{{ vid.snippet.thumbnails.default.url}}' style='z-index:1;width: 100%;'  />
+                      <div class='yt-kontainer-watermark'>
+                        <img src='../../assets/images/play.png' class="watermark"  />
+                      </div>
+                  </ion-card-content>
+              </ion-card>
+            </ion-slide>
+        </ion-slides> 
+      </div>
+    </div>
+  </div>
+  <div id="kontainer_info_kontrak_servis" *ngIf="kontrak_servis_registrasi==1">
+    <div padding>
+      <img src="../../assets/images/icon-kontrak-transparan.png" style="height:37px; float:right" />
+
+      <div style="font-size:14px;font-weight: 800; padding-bottom:17px">{{label_kontrak_servis}}</div>
+      <table cellpadding="0" cellspacing="0" width="100%" *ngIf="tabel_info_registrasi_kontrak_servis" >
+        <tr>
+          <td width="40%"><span >{{label_tanggal_registrasi}}</span></td>
+          <td [innerHTML]="kontainer_info_kontrak_servis_tanggal_registrasi"></td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td >{{kontainer_info_kontrak_servis_status_registrasi}}</td>
+        </tr>
+      </table>
+      <table cellpadding="0" cellspacing="0" width="100%" *ngIf="tabel_info_kontrak_servis">
+        <tr>
+          <td width="40%"><span>{{label_nomor}}</span></td>
+          <td width="5%">:</td>
+          <td [innerHTML]="kontainer_info_kontrak_servis_nomor"></td>
+        </tr>
+        <tr><td><span>{{label_masa_berlaku}}</span></td>
+          <td width="5%">:</td>
+          <td [innerHTML]="kontainer_info_kontrak_servis_masa_berlaku"></td>
+        </tr>
+        <tr><td colspan="3" style='font-weight:500;border-bottom: 1px solid darkgray;padding: 10px 0'>
+          <span>{{label_jadwal_kunjungan}} :</span></td>
+        </tr>
+        <tr>
+          <td style="padding-top: 10px" colspan="3" [innerHTML]="kontainer_info_kontrak_servis_jadwal_kunjungan"></td>
+        </tr>
+        <tr>
+          <td colspan="3" style="font-style: italic"><strong style="color:red">*</strong>. <span>{{label_jadwal_kunjungan_terdekat}}</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!-- <div id="history" style="display:none" >
+    <div>
+      <div class="judul-riwayat">Riwayat Produk Konsumen</div>
+      <div *ngFor="let p of arr_history; let j=index" padding style="background-color: gainsboro;color: #78736c;border-radius: 5px;margin-top: 5px;" >
+        <div class="judul-history">
+          <div style="text-align: left;display: inline-block;width: 60%;font-weight: 500;" >{{p.tanggal}}</div>
+          <div style="display: inline-block;text-align: right;width: 35%;">{{p.jam}}</div>
+        </div>
+        <div class="detail" style="font-size:14px; padding-bottom:17px" [innerHtml] = "p.detail | safeHtml" ></div>
+      </div>
+    </div>
+  </div> -->
+
+</ion-content>

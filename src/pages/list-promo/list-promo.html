@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar color="light">
+        <button ion-button menuToggle icon-only>
+          <ion-icon name="menu" style="padding-top: 10px;" color="modena"></ion-icon>
+        </button>
+        <ion-buttons end>
+            <img src="../../assets/images/logo-home.jpg" width="121" style="padding-top: 10px"/>
+        </ion-buttons>
+      </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="row" style="margin-top: 10px" padding>
+      <img *ngFor="let itm of arrList;" (tap)="zoomin(itm.image)" full src="{{itm.image}}" style="margin-bottom: 5px;height: 100%;width: 100%;" />
+     
+    </div>
+</ion-content>
+<div class="footer">
+  <page-followus></page-followus>
+  <div style="padding: 10px;background-color: #faa61a"></div>
+</div>

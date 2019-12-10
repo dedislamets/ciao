@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="light">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu" style="padding-top: 10px;" color="modena"></ion-icon>
+    </button>
+    <ion-buttons end>
+        <img src="../../assets/images/logo-home.jpg" width="121" style="padding-top: 10px"/>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div padding>
+    <div *ngFor="let itm of arrList">
+      <h3>{{itm.program_judul_id}}</h3>
+      <div style="margin:0 auto; width:100%; text-align:center">
+        <img src="{{itm.image}}" />
+      </div>
+      <h3 style="font-size: 15px" style="color:green">Rp {{itm.program_harga | number}}</h3>
+      <button ion-button icon-start block (tap)="register()" color="modena" style="font-size: 12px" >
+        Register
+      </button>
+      <div style="margin-bottom: 10px;" [innerHtml] = "itm.program_keterangan_id | safeHtml"></div>
+    </div>
+    <div *ngFor="let itm of arrList_detail" class="box Efek2" style="background-color: #ffe98f;padding: 10px;margin-bottom: 10px;">
+      <h3 style="font-size: 15px;border-bottom: solid 1.5px gray;padding-bottom: 5px;" >{{itm.detail_kode_id}}</h3>
+      <div [innerHtml] = "itm.detail_id | safeHtml"></div>
+    </div>
+    <button ion-button icon-start block (tap)="register()" color="modena" style="font-size: 12px" >
+        register
+    </button>
+  </div>
+</ion-content>

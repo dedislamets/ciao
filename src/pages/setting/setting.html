@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="light">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu" style="padding-top: 10px;" color="modena"></ion-icon>
+    </button>
+    <ion-buttons end>
+        <img src="../../assets/images/logo-home.jpg" width="121" style="padding-top: 10px"/>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+  <h1 class="setting" color="modena">Setting</h1>
+  <ion-list>
+      <button ion-item  (click)="profile()">
+        <ion-icon name="contacts" item-start></ion-icon>
+        Profile
+      </button>
+      <button ion-item  (click)="infokonsumen()">
+          <ion-icon name="call" item-start></ion-icon>
+          Contact Kami
+        </button>
+      <button ion-item  (click)="logout()">
+        <ion-icon name="log-out" item-start></ion-icon>
+        Logout
+      </button>
+      
+  </ion-list>
+</ion-content>

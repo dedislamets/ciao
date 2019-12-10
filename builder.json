@@ -1,0 +1,18 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "ciao.keystore",
+            "storePassword": "admin123^",
+            "alias": "ciao",
+            "password" : "admin123^",
+            "keystoreType": ""
+        },
+        "release": {
+            "keystore": "ciao.keystore",
+            "storePassword": "admin123^",
+            "alias": "ciao",
+            "password" : "admin123^",
+            "keystoreType": ""
+        }
+    }
+}

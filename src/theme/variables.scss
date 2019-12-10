@@ -38,7 +38,9 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  modena:     #faa61a,
+  dark-yellow: #414042
 );
 
 
@@ -86,3 +88,10 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+ion-app.cameraView ion-nav{opacity:0}
+
+// ion-app.cameraView,ion-app.cameraView ion-content,ion-app.cameraView .nav-decor {
+//   background: url("../../assets/imgs/video-overlay.png") !important;
+//   background-size: 100% 100% !important;
+// }

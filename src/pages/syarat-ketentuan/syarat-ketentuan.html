@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar color="modena">
+    <ion-title>{{input_b_syarat_ketentuan_kontrak_servis}}</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary">Cancel</span>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div style="width:100%; padding-bottom:7px" [innerHTML]="konten_konfirmasi | safeHtml"></div>
+</ion-content>

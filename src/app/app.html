@@ -1,1 +1,57 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" >
+    <!-- <ion-header>
+       <div class="profile-image-side">
+          <h1 item-end>Ciao Modena</h1>
+       </div>
+    </ion-header> -->
+  
+    <ion-content padding >
+      <div style="background-color: #faa61a;height: 100%">
+        <ion-item menuClose (click)="home()" color="modena" style="color: black">
+            Preferences
+        </ion-item>
+        <ion-item menuClose (click)="home()" color="modena"  style="color: black">
+          <ion-icon name="home" item-left color="dark"></ion-icon>
+          Home
+        </ion-item>
+        <ion-item menuClose (click)="registrasi()" color="modena"  style="color: black">
+          <ion-icon name="create" item-left color="dark"></ion-icon>
+          Register
+        </ion-item>
+        <ion-item menuClose (click)="experience()" color="modena"  style="color: black">
+          <ion-icon name="pizza" item-left color="dark"></ion-icon>
+          Experience
+        </ion-item>
+        <ion-item  menuClose (click)="promo()" color="modena"  style="color: black">
+          <ion-icon name="bookmarks" item-left color="dark"></ion-icon>
+          Latest News
+        </ion-item>
+        <ion-item menuClose (click)="onlineshop()" color="modena"  style="color: black">
+          <ion-icon name="basket" item-left color="dark"></ion-icon>
+          Online Shopping
+        </ion-item>
+        <!-- <ion-item menuClose (click)="download()" color="modena"  style="color: black">
+            <ion-icon name="download" item-left color="dark"></ion-icon>
+            Download
+          </ion-item> -->
+        <ion-item menuClose (click)="setting()" color="modena"  style="color: black">
+          <ion-icon name="build" item-left color="dark"></ion-icon>
+          Setting
+        </ion-item>
+      </div>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>
+
+<!-- <ion-list-header *ngIf="auth.getEmail()">{{auth.getEmail()}}</ion-list-header>
+
+<ion-item (click)="logout()" *ngIf="auth.authenticated">
+	<ion-icon name="log-out" item-left></ion-icon>
+	Log out
+</ion-item>
+	
+<ion-item (click)="login()" *ngIf="!auth.authenticated">
+	<ion-icon name="log-in" item-left></ion-icon>
+	Log in
+</ion-item> -->

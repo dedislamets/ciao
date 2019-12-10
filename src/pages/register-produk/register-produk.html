@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-navbar color="light">
+        <button ion-button menuToggle icon-only>
+          <ion-icon name="menu" style="padding-top: 10px;" color="modena"></ion-icon>
+        </button>
+        <ion-buttons end>
+            <img src="../../assets/images/logo-home.jpg" width="121" style="padding-top: 10px"/>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <div style="padding: 16px">
+    <div class="row">
+      <img full src="../../assets/images/register-banner.jpg" style="height: 100%;width: 100%;" />
+      <h1 center class="banner-title">{{judul}}</h1>
+      <hr>
+    </div>
+    <div class="wrapper">	
+      <div class="profile">	
+          <ion-grid>
+              <ion-row>
+                <ion-col col-4>
+                  <h2 style="font-size: 14px;margin-bottom: 0;">WELCOME,</h2>
+                  <p style="font-weight: 500;font-size: 11px;margin-top: 0;">{{ profile.name }}</p>
+                </ion-col>
+                <ion-col col-8>
+                    <p style="margin:0;font-size: 12px;" class="line-clamp-address">{{ profile.address }}</p>
+                    <p class="line-clamp" style="margin:0;font-size: 12px;">Mobile : {{ profile.handphone }}</p>
+                    <p class="line-clamp-2" style="margin:0;font-size: 12px;">Email : {{ profile.email }}</p>
+                    <button ion-button item-end icon-start color="modena" (tap)="goprofile()" style="height: 16px;font-size: 9px;color:black">
+                      Update Profile
+                    </button>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+      </div>
+    </div>
+    
+    <h1 center class="banner-title-2" >{{label_data_pembelian}}</h1>
+    <hr class="hr-title">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>{{label_tempat_pembelian}} <span style="color:red; font-weight:900">** </span></ion-label>
+        <ion-input type="text" [(ngModel)]="tempat_beli" ></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label stacked>{{label_tanggal_pembelian}}<span style="color:red; font-weight:900">** </span></ion-label>
+        <ion-datetime [(ngModel)]="tgl_beli" displayFormat="YYYY-MM-DD" (ionChange)="onChangeTanggal($event)"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked style="color: #999">{{label_foto_faktur}}<span style="color:red; font-weight:900">** </span></ion-label>
+      </ion-item>
+      <div class="profile-image" >
+          <ion-row>
+            <ion-col col-12 padding style="padding-top: 0">
+                <img [src]="base64Image" (click)="presentActionSheet()">
+            </ion-col>
+          </ion-row>
+      </div>
+      <p padding style="text-align: justify;font-size: 12px;padding-top: 0;padding-bottom: 0;margin-bottom: 0;margin-top: 0">
+          <span style="color:red; font-weight:900">** </span><span [innerHTML]="label_faktur_harus_difoto | safeHtml"></span>
+      </p>
+    </ion-list>
+    <h1 center class="banner-title-2" >{{judul}}</h1>
+    <hr class="hr-title">
+    <ion-list>
+      <form [formGroup]="myForm">
+        <div formArrayName="projects">
+          <div *ngFor="let project of myForm.get('projects').controls; let j=index">
+              <div>
+                <ion-label stacked style="margin-left: 15px">{{label_no_seri_produk}}</ion-label>
+                <ion-item [formGroupName]="j">
+                  <ion-label class="nomor">{{j+1}}</ion-label>
+                  <ion-input type="text" class="text-barcode" [(ngModel)]="values[j]" (change)="valChange($event.target.value, j)" formControlName="projectName"></ion-input>
+                  <button ion-button color="dark" item-right style="margin: 0;font-size: 9px;height: 29px;" (tap)="scanBarcode(j)">
+                    Scan QR Code
+                  </button>
+                  <button ion-button color="dark" item-right (tap)="deleteProject(j)" style="margin: 0;margin-left: 5px;font-size: 9px;height: 29px;">
+                      <ion-icon name="trash"></ion-icon>
+                  </button>
+                </ion-item>
+							  <div  style="font-weight:900; padding:7px 2px 0px 15px;font-size: 12px" [ngStyle]="{'color': valids[j] == '1' ? 'black' : 'red'}">{{ labels[j] }}</div>
+              </div>
+
+            <!-- <fieldset>
+              <legend><h4>PROJECT {{j+1}}</h4></legend>
+              <div [formGroupName]="j">
+                <label>Project Name:</label>
+                <input formControlName="projectName" /><span><button (click)="deleteProject(comp.controls.projects, j)">Delete Project</button></span>
+              </div>
+            </fieldset> -->
+          </div>
+          <ion-col padding>
+              <button ion-button item-end block color="modena" (tap)="addNewProject()" class="btn-more">
+                  {{input_b_tambah_produk_registrasi}}
+              </button>
+          </ion-col>
+        </div>
+      </form>
+    </ion-list>
+    <h1 center class="banner-title-2" >{{ label_data_klaim_cashback }}</h1>
+    <hr class="hr-title">
+    <ion-list style="padding-bottom: 0;margin-bottom: 0">
+      <p padding style="text-align: justify;font-size: 12px;padding-top: 0;padding-bottom: 0;margin-bottom: 0;">{{ label_klaim_cashback_pelanggan_terhormat }}</p>
+      <ion-col padding style="padding-top: 0;padding-bottom: 0">
+          <button ion-button item-end block color="modena" (tap)="pilih()" class="btn-more">
+              {{ label_b_sellout_produk }}
+          </button>
+      </ion-col>
+      <p padding style="text-align: justify;font-size: 12px;padding-top: 0;padding-bottom: 0;margin-bottom: 0;margin-top: 0">{{ label_klaim_cashback_silahkan_lengkapi }}</p>
+      <ion-item>
+        <ion-select [(ngModel)]="mk" interface="action-sheet" (ionChange)="onChangeMetode(mk)">
+          <div *ngFor="let mk of metodeKlaim; let j=index">
+              <ion-option value="{{ j }}">{{ mk }}</ion-option>	
+          </div>
+        </ion-select>
+      </ion-item>
+      <div class="metode-klaim" [ngStyle]="{'display': konten_metode_klaim != '' ? '' : 'none'}" [innerHTML]="konten_metode_klaim | safeHtml"></div>
+      <div padding style="font-size: 12px;padding-bottom: 0" [innerHTML]='sanitizer.bypassSecurityTrustHtml(label_konten_syarat_dan_ketentuan)'></div>
+      <ion-item>
+          <ion-label>Saya setuju dengan syarat dan ketentuan di atas.</ion-label>
+          <ion-checkbox [(ngModel)]="chk_setuju" (tap)="setuju(chk_setuju)" color="dark" checked="false"></ion-checkbox>
+        </ion-item>
+      <ion-col padding style="padding-top: 0;padding-bottom: 0">
+          <button [disabled]="disabled" ion-button item-end block color="modena" (tap)="send()" class="btn-more-submit">
+              {{ input_b_kirim_registrasi }}
+          </button>
+      </ion-col>
+    </ion-list>
+    <page-followus></page-followus>
+  </div>
+  <div style="padding: 10px;background-color: #faa61a"></div>
+</ion-content>
+
+

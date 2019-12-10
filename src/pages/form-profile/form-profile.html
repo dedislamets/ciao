@@ -1,0 +1,94 @@
+<ion-header>
+    <ion-navbar color="light">
+        <button *ngIf="flag_tutup" ion-button icon-only (click)="viewCtrl.dismiss()" class="back-button bar-button bar-button-md back-button-md bar-button-default bar-button-default-md show-back-button" style="margin-left: 10px">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+        <button *ngIf="!flag_tutup" ion-button menuToggle icon-only>
+          <ion-icon name="menu" style="padding-top: 10px;" color="modena"></ion-icon>
+        </button>
+        <ion-buttons end>
+            <img src="../../assets/images/logo-home.jpg" width="121" style="padding-top: 10px"/>
+        </ion-buttons>
+      </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <div style="padding: 16px;padding-top: 0">
+      <div class="row">
+        <h1 center class="banner-title">Profile Pengguna</h1>
+        <hr>
+        <!-- <img item-start src="../../assets/images/profile.png"  (click)="presentActionSheet()" class="thumbnail"/> -->
+      </div>
+
+        <div class="box Efek2">
+          <p style="color: gray;font-weight: bold;font-size: 17px;margin: 0;" class="line-clamp">{{ profile.name }}</p>
+          <p style="color: gray;text-align: justify;margin-top: 5px;" class="line-clamp-address">{{ profile.address }}</p>
+          <p class="line-clamp">Mobile : {{ profile.handphone }}</p>
+          <p class="line-clamp-2">Email : {{ profile.email }}</p>
+          <input type="hidden" id="state_id" value="{{ profile.state_id }}|{{profile.region_id}}"/>
+        </div>
+      <ion-list>
+        <ion-item>
+          <ion-label stacked>{{label_nama}} *</ion-label>
+          <ion-input type="text" [(ngModel)]="nama" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Email *</ion-label>
+            <ion-input type="email" [(ngModel)]="email" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_alamat}} *</ion-label>
+          <ion-textarea [(ngModel)]="alamat_current" rows="4" cols="20"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_propinsi}} *</ion-label>
+          <ion-select [(ngModel)]="provinsi" interface="action-sheet" (ionChange)="onChangePropinsi(provinsi)">
+              <div *ngFor="let p of arr_provinsi">
+                  <ion-option value="{{ p.propinsi_id }}">{{ p.propinsi }}</ion-option>	
+              </div>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_kota}} *</ion-label>
+          <ion-select [(ngModel)]="kota" interface="action-sheet">
+              <div *ngFor="let p of arr_kota">
+                  <ion-option value="{{ p.kota_id }}">{{ p.kota }}</ion-option>	
+              </div>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_kode_pos}}</ion-label>
+          <ion-input type="number" [(ngModel)]="kode_pos" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_telepon}}</ion-label>
+          <ion-input type="number" [(ngModel)]="telepon" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{label_telepon_selular}}</ion-label>
+          <ion-input type="number" [(ngModel)]="hp" ></ion-input>
+        </ion-item>
+        <h3 style="font-size: 14px;padding: 0 17px;margin-bottom: 5px;">{{label_ubah_password}}</h3>
+        <ion-item>
+          <ion-label stacked>{{label_kosongkan_apabila_tidak_ada_perubahan}}</ion-label>
+          <ion-input type="password" [(ngModel)]="password" (ionBlur)="ubah_password()"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="ubah">
+            <ion-label stacked>{{label_ulangi_ketikkan_password}}</ion-label>
+            <ion-input type="password" [(ngModel)]="repeat_password" (ionBlur)="ubah_password()"></ion-input>
+        </ion-item>
+        <div *ngIf="error_password_beda" style="color: red;padding-left: 15px;padding-top: 6px;font-size: 12px;">*{{label_error_password_beda}}</div>
+      </ion-list>
+      
+      
+      <button ion-button icon-start block (tap)="validator()" color="modena" style="font-size: 12px;" >
+       Simpan
+      </button> 
+  
+      <page-followus></page-followus>
+    </div>
+    <div style="padding: 10px;background-color: #faa61a"></div>
+  </ion-content>
+  
+  
+  

@@ -1,0 +1,17 @@
+page-login {
+    .dark-blue {
+        background-color: #414042;
+    }
+
+    .line {
+        width: 85px;
+        height: 0;
+        border: 1px solid #C4C4C4;
+        margin: 2px;
+        display:inline-block;
+    }
+
+    .alert-sub-title {
+        user-select: text !important;
+    }
+}

@@ -1,3 +1,22 @@
 page-home {
+    .toolbar-md-light .toolbar-background-md {
+        background: #fff;
+    }
 
+    .follow-title{
+        text-align: center;
+        font-size: 12px;
+        display: block;
+        width: 100%;
+        padding-top: 14px;
+        font-weight: 300;
+    }
+    .copyright{
+        text-align: center;
+        font-size: 8px;
+        font-weight: 200;
+    }
+    .alert-sub-title {
+        user-select: text !important;
+    }
 }

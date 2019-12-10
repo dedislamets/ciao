@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar color="light">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu" style="padding-top: 10px;" color="modena"></ion-icon>
+    </button>
+    <ion-buttons end>
+        <img src="../../assets/images/logo-home.jpg" width="121" style="padding-top: 10px"/>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding: 16px">
+    <div class="row">
+      <img full src="../../assets/images/experience-banner.jpg" />
+      <h1 center class="banner-title">GET THE EXPERIENCE</h1>
+      <hr>
+    </div>
+  </div>
+  <ion-grid>
+    <ion-row style="border-bottom: 1px solid darkgray;    margin-bottom: 5px;">
+      <ion-col *ngFor="let itm of arrList; let j=index" col-6>
+        <img (tap)="onDetails(itm)" src="{{itm.image}}" >
+        <div style="font-size: 11px">Start Date : {{ itm.pa_awal }} <br>  Closing Date : {{ itm.pa_akhir }}</div>
+        <h3 class="title-class" (tap)="onDetails(itm)">{{itm.program_judul_id}}</h3>
+        <div style="font-size: 9px">{{itm.hari_tersisa_label}}</div>
+        <div style="font-size: 13px">{{itm.program_chef}}</div>
+        <div style="font-size: 13px;font-weight: bold">Rp {{ itm.program_harga | number}},-</div>
+        <button ion-button item-end icon-start color="modena" (tap)="onDetails(itm)" style="width:40%;height: 16px;font-size: 9px;color:black">
+            Details
+        </button>
+        <button ion-button item-end icon-start color="modena" (tap)="register(itm)" style="width:50%;height: 16px;font-size: 9px;color:black">
+            Join Class
+        </button>
+      </ion-col>
+     
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+<div class="footer">
+  <page-followus></page-followus>
+  <div style="padding: 10px;background-color: #faa61a"></div>
+</div>

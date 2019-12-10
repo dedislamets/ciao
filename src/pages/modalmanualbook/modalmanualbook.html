@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar color="modena">
+      <ion-title>
+        Manual Book
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary">Cancel</span>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  <ion-content padding>
+      <h1 style="padding-left: 15px;font-size: 16px;border-bottom: solid 1px gray;padding-bottom: 10px;">{{label_dokumen_manual_pengguna}} {{produk}} :</h1>
+      <ion-list>
+        <div ion-item *ngFor="let item of items; let j=index" style="border-bottom: 1px solid gray">
+          <ion-row>
+              <ion-row style="width: 100%">
+                <input type="checkbox" name="cb_{{j}}" id="cb_{{j}}" value="{{item.manualfileid}}"  (click)="klik_kirim_email($event)" style="margin-top: 4px" />
+                <span style="padding-left: 10px">{{ item.title }}</span>
+              </ion-row>
+              <ion-row>
+                <button ion-button outline item-end icon-start (tap)="select(item)" color="modena">
+                    <ion-icon name="download"></ion-icon>
+                    {{input_lihat}}
+                </button>
+              </ion-row>
+          </ion-row>
+         
+        </div>
+        <ion-item *ngIf="show">
+            <ion-label stacked>{{label_mohon_isikan_alamat}}</ion-label>
+            <ion-input type="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <button ion-button icon-start block padding (tap)="kirim_email()" color="modena" style="font-size: 12px" *ngIf="show">
+            {{input_b_email}}
+        </button>
+      </ion-list>
+      
+  </ion-content>
+  
